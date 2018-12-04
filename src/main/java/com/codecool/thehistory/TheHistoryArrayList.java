@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class TheHistoryArrayList implements TheHistory {
     /**
@@ -14,6 +16,7 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
+        this.wordsArrayList = Arrays.asList(text.split(" "));
     }
 
     @Override
@@ -24,7 +27,7 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public int size() {
         //TODO: check the TheHistory interface for more information
-        return 0;
+        return wordsArrayList.size();
     }
 
     @Override

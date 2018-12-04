@@ -12,6 +12,7 @@ public class TheHistoryArray implements TheHistory {
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
+        this.wordsArray = text.split(" ");
     }
 
     @Override
@@ -22,7 +23,7 @@ public class TheHistoryArray implements TheHistory {
     @Override
     public int size() {
         //TODO: check the TheHistory interface for more information
-        return 0;
+        return this.wordsArray.length;
     }
 
     @Override
