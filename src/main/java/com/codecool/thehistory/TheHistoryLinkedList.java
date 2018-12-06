@@ -28,7 +28,6 @@ public class TheHistoryLinkedList implements TheHistory {
                 iter.remove();
             }
         }
-        System.out.println(wordsLinkedList.size());
     }
 
     @Override
@@ -58,6 +57,22 @@ public class TheHistoryLinkedList implements TheHistory {
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
+        for (int i = 0; i < wordsLinkedList.size(); i++) {
+            if (wordsLinkedList.size() - i >= fromWords.length) {
+                LinkedList<String> subListToCheck = new LinkedList<>(wordsLinkedList.subList(i, i + fromWords.length));
+                String[] subArrayToCheck = new String[subListToCheck.size()];
+                subArrayToCheck = subListToCheck.toArray(subArrayToCheck);
+                if (Arrays.equals(fromWords, subArrayToCheck)) {
+                    for (int j = 0; j < fromWords.length; j++) {
+                        wordsLinkedList.remove(i);
+                    }
+                    for (int k = 0; k < toWords.length; k++) {
+                        wordsLinkedList.add(i + k, toWords[k]);
+                    }
+                    i += toWords.length - 1;
+                }
+            }
+        }
     }
 
     @Override
@@ -66,7 +81,8 @@ public class TheHistoryLinkedList implements TheHistory {
         for (String word : wordsLinkedList) {
             sb.append(word).append(" ");
         }
-        if (sb.length() > 0) sb.deleteCharAt(sb.length() - 1); // last space char
+        if (sb.length() > 0) sb.deleteCharAt(sb.length() - 1);// last space char
+        System.out.println(sb);
         return sb.toString();
     }
 
