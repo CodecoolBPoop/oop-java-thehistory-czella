@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class TheHistoryLinkedList implements TheHistory {
     /**
@@ -15,12 +16,19 @@ public class TheHistoryLinkedList implements TheHistory {
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
-        this.wordsLinkedList = Arrays.asList(text.split(" "));
+        wordsLinkedList.addAll(Arrays.asList(text.split(" ")));
     }
 
     @Override
     public void removeWord(String wordToBeRemoved) {
         //TODO: check the TheHistory interface for more information
+        for (Iterator<String> iter = wordsLinkedList.iterator(); iter.hasNext();) {
+            String word = iter.next();
+            if (word.equals(wordToBeRemoved)) {
+                iter.remove();
+            }
+        }
+        System.out.println(wordsLinkedList.size());
     }
 
     @Override
@@ -32,11 +40,19 @@ public class TheHistoryLinkedList implements TheHistory {
     @Override
     public void clear() {
         //TODO: check the TheHistory interface for more information
+        wordsLinkedList.clear();
     }
 
     @Override
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
+        ListIterator<String> iterator = this.wordsLinkedList.listIterator();
+        while(iterator.hasNext()) {
+            String next = iterator.next();
+            if(next.equals(from)) {
+                iterator.set(to);
+            }
+        }
     }
 
     @Override
